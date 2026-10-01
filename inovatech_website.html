@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InovaTech - Soluções Tecnológicas do Futuro</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Poppins & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#0d9488',
+                            cyan: '#06b6d4',
+                            purple: '#6366f1',
+                            dark: '#0f172a',
+                            darker: '#020617',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        /* Custom Background Themes */
+        .bg-theme-tech-dark {
+            background-image: linear-gradient(to bottom, rgba(2, 6, 23, 0.85), rgba(15, 23, 42, 0.95)), 
+                              url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .bg-theme-cyber-blue {
+            background-image: linear-gradient(to bottom, rgba(14, 165, 233, 0.85), rgba(15, 23, 42, 0.95)), 
+                              url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .bg-theme-clean-light {
+            background-image: linear-gradient(to bottom, rgba(248, 250, 252, 0.92), rgba(241, 245, 249, 0.95)), 
+                              url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-card-light {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        /* Pulse glow animation */
+        @keyframes glow {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        .animate-glow {
+            animation: glow 6s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body id="mainBody" class="bg-slate-950 text-slate-100 min-h-screen transition-all duration-500 bg-theme-tech-dark">
+
+    <!-- Navbar Horizontal Fixo -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-slate-950/60 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo -->
+                <a href="#inicio" class="flex items-center gap-2 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform duration-300">
+                        <i data-lucide="cpu" class="w-6 h-6"></i>
+                    </div>
+                    <span class="text-2xl font-bold font-heading bg-gradient-to-r from-white via-slate-200 to-cyan-400 bg-clip-text text-transparent">
+                        Inova<span class="text-cyan-400">Tech</span>
+                    </span>
+                </a>
+
+                <!-- Desktop Menu Horizontal -->
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="#inicio" class="text-sm font-medium hover:text-cyan-400 transition-colors flex items-center gap-1.5 py-2 relative group">
+                        <span>Início</span>
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#sobre" class="text-sm font-medium hover:text-cyan-400 transition-colors flex items-center gap-1.5 py-2 relative group">
+                        <span>Sobre Nós</span>
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#localizacao" class="text-sm font-medium hover:text-cyan-400 transition-colors flex items-center gap-1.5 py-2 relative group">
+                        <span>Localização</span>
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#background" class="text-sm font-medium hover:text-cyan-400 transition-colors flex items-center gap-1.5 py-2 relative group">
+                        <i data-lucide="palette" class="w-4 h-4 text-cyan-400"></i>
+                        <span>Background</span>
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                </nav>
+
+                <!-- Action Button -->
+                <div class="hidden md:flex items-center gap-4">
+                    <a href="#contato" class="px-5 py-2.5 rounded-full text-sm font-semibold bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-lg shadow-cyan-500/25 transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2">
+                        <span>Fale Conosco</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobileMenuBtn" aria-label="Abrir menu" class="p-2 rounded-lg bg-slate-800/80 text-slate-300 hover:text-white focus:outline-none">
+                        <i data-lucide="menu" id="menuIcon" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden bg-slate-950/95 border-b border-slate-800 backdrop-blur-xl px-4 pt-2 pb-6 space-y-3">
+            <a href="#inicio" class="mobile-link block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-800 hover:text-cyan-400">Início</a>
+            <a href="#sobre" class="mobile-link block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-800 hover:text-cyan-400">Sobre Nós</a>
+            <a href="#localizacao" class="mobile-link block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-800 hover:text-cyan-400">Localização</a>
+            <a href="#background" class="mobile-link block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-800 hover:text-cyan-400 flex items-center gap-2">
+                <i data-lucide="palette" class="w-4 h-4 text-cyan-400"></i>
+                Background & Temas
+            </a>
+            <a href="#contato" class="mobile-link block mt-4 text-center px-5 py-3 rounded-xl font-semibold bg-gradient-to-r from-cyan-500 to-blue-600 text-white">Fale Conosco</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION / INÍCIO -->
+    <section id="inicio" class="relative min-h-screen pt-32 pb-20 flex items-center justify-center overflow-hidden">
+        <!-- Glow Orbs in Background -->
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/20 rounded-full filter blur-[120px] pointer-events-none animate-glow"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-600/20 rounded-full filter blur-[120px] pointer-events-none animate-glow" style="animation-delay: 3s;"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-cyan-300 text-xs sm:text-sm font-medium mb-8 animate-bounce">
+                <span class="flex h-2 w-2 rounded-full bg-cyan-400 animate-ping"></span>
+                <i data-lucide="sparkles" class="w-4 h-4 text-cyan-400"></i>
+                <span>Transformação Digital & Inteligência para o seu Negócio</span>
+            </div>
+
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
+                Soluções Tecnológicas <br class="hidden sm:inline">
+                <span class="bg-gradient-to-r from-cyan-400 via-teal-300 to-indigo-400 bg-clip-text text-transparent">
+                    do Futuro, Hoje
+                </span>
+            </h1>
+
+            <p class="max-w-3xl mx-auto text-lg sm:text-xl text-slate-300 mb-10 font-normal leading-relaxed">
+                Na <strong class="text-cyan-300 font-semibold">InovaTech</strong>, impulsionamos organizações com infraestrutura de nuvem inteligente, desenvolvimento de software sob medida e consultoria estratégica de inovação.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+                <a href="#sobre" class="w-full sm:w-auto px-8 py-4 rounded-full font-bold text-slate-900 bg-cyan-400 hover:bg-cyan-300 transition-all duration-300 shadow-xl shadow-cyan-500/20 hover:scale-105 active:scale-95 flex items-center justify-center gap-2">
+                    <span>Conheça a InovaTech</span>
+                    <i data-lucide="arrow-down-right" class="w-5 h-5"></i>
+                </a>
+                <a href="#background" class="w-full sm:w-auto px-8 py-4 rounded-full font-semibold border border-white/20 hover:border-cyan-400/50 glass-card hover:bg-white/10 transition-all duration-300 flex items-center justify-center gap-2">
+                    <i data-lucide="sliders" class="w-5 h-5 text-cyan-400"></i>
+                    <span>Personalizar Visual</span>
+                </a>
+            </div>
+
+            <!-- Destaques em badges/cards pequenos -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 max-w-4xl mx-auto">
+                <div class="glass-card p-4 rounded-2xl flex items-center gap-3">
+                    <div class="p-2.5 bg-cyan-500/10 rounded-xl text-cyan-400">
+                        <i data-lucide="shield-check" class="w-6 h-6"></i>
+                    </div>
+                    <div class="text-left">
+                        <h4 class="text-sm font-bold">Segurança Máxima</h4>
+                        <p class="text-xs text-slate-400">Criptografia & Backup</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-4 rounded-2xl flex items-center gap-3">
+                    <div class="p-2.5 bg-indigo-500/10 rounded-xl text-indigo-400">
+                        <i data-lucide="zap" class="w-6 h-6"></i>
+                    </div>
+                    <div class="text-left">
+                        <h4 class="text-sm font-bold">Alta Performance</h4>
+                        <p class="text-xs text-slate-400">Sistemas Ultra-rápidos</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-4 rounded-2xl flex items-center gap-3">
+                    <div class="p-2.5 bg-blue-500/10 rounded-xl text-blue-400">
+                        <i data-lucide="cloud-cog" class="w-6 h-6"></i>
+                    </div>
+                    <div class="text-left">
+                        <h4 class="text-sm font-bold">Cloud Native</h4>
+                        <p class="text-xs text-slate-400">Escalabilidade Total</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-4 rounded-2xl flex items-center gap-3">
+                    <div class="p-2.5 bg-purple-500/10 rounded-xl text-purple-400">
+                        <i data-lucide="bot" class="w-6 h-6"></i>
+                    </div>
+                    <div class="text-left">
+                        <h4 class="text-sm font-bold">IA Integrada</h4>
+                        <p class="text-xs text-slate-400">Automações Inteligentes</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SOBRE NÓS -->
+    <section id="sobre" class="py-24 relative z-10 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-semibold text-cyan-400 tracking-widest uppercase mb-2">Quem Somos</h2>
+                <p class="text-3xl sm:text-4xl font-bold font-heading">Reinventando o futuro digital do seu negócio</p>
+                <div class="w-16 h-1 bg-cyan-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- História & Missão / Visão / Valores -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold font-heading text-cyan-300">Nossa História</h3>
+                    <p class="text-slate-300 leading-relaxed">
+                        Fundada com o propósito de descomplicar a tecnologia e acelerar a inovação nas empresas, a <strong>InovaTech</strong> cresceu rapidamente tornando-se referência em soluções de alta performance. 
+                    </p>
+                    <p class="text-slate-300 leading-relaxed">
+                        Combinamos criatividade, arquitetura de sistemas robusta e inteligência artificial para entregar resultados reais que transformam mercados e impulsionam o sucesso de nossos parceiros.
+                    </p>
+                    
+                    <div class="grid grid-cols-3 gap-4 pt-4">
+                        <div class="glass-card p-4 rounded-xl text-center">
+                            <span class="block text-3xl font-extrabold text-cyan-400 mb-1">250+</span>
+                            <span class="text-xs text-slate-400 uppercase font-medium">Projetos Entregues</span>
+                        </div>
+                        <div class="glass-card p-4 rounded-xl text-center">
+                            <span class="block text-3xl font-extrabold text-indigo-400 mb-1">98%</span>
+                            <span class="text-xs text-slate-400 uppercase font-medium">Satisfação</span>
+                        </div>
+                        <div class="glass-card p-4 rounded-xl text-center">
+                            <span class="block text-3xl font-extrabold text-blue-400 mb-1">10+</span>
+                            <span class="text-xs text-slate-400 uppercase font-medium">Anos no Mercado</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card Interativo Missão Visão Valores -->
+                <div class="grid grid-cols-1 gap-4">
+                    <div class="glass-card p-6 rounded-2xl border-l-4 border-l-cyan-400 hover:translate-x-2 transition-transform duration-300">
+                        <div class="flex items-center gap-4 mb-2">
+                            <div class="p-2 bg-cyan-500/20 rounded-lg text-cyan-400">
+                                <i data-lucide="target" class="w-6 h-6"></i>
+                            </div>
+                            <h4 class="text-xl font-bold">Missão</h4>
+                        </div>
+                        <p class="text-sm text-slate-300">
+                            Prover tecnologia de ponta acessível, segura e escalável, capacitando empresas a alcançarem seu máximo potencial no ecossistema digital.
+                        </p>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl border-l-4 border-l-indigo-500 hover:translate-x-2 transition-transform duration-300">
+                        <div class="flex items-center gap-4 mb-2">
+                            <div class="p-2 bg-indigo-500/20 rounded-lg text-indigo-400">
+                                <i data-lucide="eye" class="w-6 h-6"></i>
+                            </div>
+                            <h4 class="text-xl font-bold">Visão</h4>
+                        </div>
+                        <p class="text-sm text-slate-300">
+                            Ser reconhecida globalmente como hub de inovação e excelência técnica, liderando a transformação digital de maneira sustentável e humana.
+                        </p>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl border-l-4 border-l-purple-500 hover:translate-x-2 transition-transform duration-300">
+                        <div class="flex items-center gap-4 mb-2">
+                            <div class="p-2 bg-purple-500/20 rounded-lg text-purple-400">
+                                <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+                            </div>
+                            <h4 class="text-xl font-bold">Valores</h4>
+                        </div>
+                        <p class="text-sm text-slate-300">
+                            Inovação contínua, transparência, foco no cliente, ética em dados, colaboração e paixão por superar expectativas.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cards de Serviços e Soluções -->
+            <div class="mt-20">
+                <h3 class="text-2xl font-bold text-center mb-10 font-heading">Nossas Soluções em Destaque</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Card 1 -->
+                    <div class="glass-card p-8 rounded-2xl hover:border-cyan-400/50 transition-all duration-300 group hover:-translate-y-2">
+                        <div class="w-14 h-14 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 mb-6 group-hover:scale-110 transition-transform">
+                            <i data-lucide="code-2" class="w-8 h-8"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3">Desenvolvimento Sob Medida</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                            Sistemas web, aplicativos móveis e APIs robustas projetados exatamente para atender aos processos do seu negócio.
+                        </p>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="glass-card p-8 rounded-2xl hover:border-indigo-400/50 transition-all duration-300 group hover:-translate-y-2">
+                        <div class="w-14 h-14 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-6 group-hover:scale-110 transition-transform">
+                            <i data-lucide="brain-circuit" class="w-8 h-8"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3">Inteligência Artificial & Dados</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                            Modelos preditivos, automação inteligente de processos e dashboards analíticos para tomadas de decisão ágeis.
+                        </p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="glass-card p-8 rounded-2xl hover:border-purple-400/50 transition-all duration-300 group hover:-translate-y-2">
+                        <div class="w-14 h-14 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 mb-6 group-hover:scale-110 transition-transform">
+                            <i data-lucide="cloud-lightning" class="w-8 h-8"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3">Cloud Infrastructure & DevOps</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                            Migração para nuvem, gerenciamento de servidores, alta disponibilidade e monitoramento 24/7 com máxima segurança.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- BACKGROUND & PERSONALIZAÇÃO DE TEMA -->
+    <section id="background" class="py-24 relative z-10 bg-slate-900/50 backdrop-blur-md border-t border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-semibold mb-3">
+                    <i data-lucide="sliders" class="w-4 h-4"></i>
+                    <span>Experiência Visual Interativa</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-bold font-heading mb-4">Personalização de Background</h2>
+                <p class="text-slate-300 text-base">
+                    Alterne o tema e a imagem de fundo do site em tempo real para vivenciar a InovaTech em diferentes atmosferas visuais.
+                </p>
+            </div>
+
+            <!-- Botões para Trocar Tema / Background -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                
+                <!-- Tema 1: Tech Dark -->
+                <button onclick="changeTheme('tech-dark')" class="theme-btn glass-card p-6 rounded-2xl text-left border-2 border-cyan-400 hover:scale-105 transition-all duration-300 focus:outline-none relative group">
+                    <div class="h-28 rounded-xl bg-slate-950 mb-4 overflow-hidden relative border border-white/10">
+                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=400&auto=format&fit=crop" alt="Tech Dark" class="w-full h-full object-cover opacity-60">
+                        <span class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h4 class="font-bold text-lg">Tech Dark</h4>
+                            <p class="text-xs text-slate-400">Tema Escuro Futuro (Padrão)</p>
+                        </div>
+                        <i data-lucide="check-circle-2" class="w-6 h-6 text-cyan-400"></i>
+                    </div>
+                </button>
+
+                <!-- Tema 2: Cyber Blue -->
+                <button onclick="changeTheme('cyber-blue')" class="theme-btn glass-card p-6 rounded-2xl text-left border-2 border-transparent hover:border-sky-400 hover:scale-105 transition-all duration-300 focus:outline-none relative group">
+                    <div class="h-28 rounded-xl bg-sky-950 mb-4 overflow-hidden relative border border-white/10">
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=400&auto=format&fit=crop" alt="Cyber Blue" class="w-full h-full object-cover opacity-60">
+                        <span class="absolute inset-0 bg-gradient-to-t from-sky-950 via-transparent to-transparent"></span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h4 class="font-bold text-lg">Cyber Blue</h4>
+                            <p class="text-xs text-slate-400">Energia & Redes Neurais</p>
+                        </div>
+                        <i data-lucide="circle" class="w-6 h-6 text-slate-500"></i>
+                    </div>
+                </button>
+
+                <!-- Tema 3: Clean Light -->
+                <button onclick="changeTheme('clean-light')" class="theme-btn glass-card p-6 rounded-2xl text-left border-2 border-transparent hover:border-slate-300 hover:scale-105 transition-all duration-300 focus:outline-none relative group">
+                    <div class="h-28 rounded-xl bg-slate-200 mb-4 overflow-hidden relative border border-white/10">
+                        <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=400&auto=format&fit=crop" alt="Clean Light" class="w-full h-full object-cover opacity-60">
+                        <span class="absolute inset-0 bg-gradient-to-t from-slate-200 via-transparent to-transparent"></span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h4 class="font-bold text-lg">Clean Light</h4>
+                            <p class="text-xs text-slate-400">Claro & Minimalista</p>
+                        </div>
+                        <i data-lucide="circle" class="w-6 h-6 text-slate-500"></i>
+                    </div>
+                </button>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- LOCALIZAÇÃO E CONTATO -->
+    <section id="localizacao" class="py-24 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-semibold text-cyan-400 tracking-widest uppercase mb-2">Onde Estamos</h2>
+                <p class="text-3xl sm:text-4xl font-bold font-heading">Venha nos Visitar ou Entre em Contato</p>
+                <div class="w-16 h-1 bg-cyan-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                
+                <!-- Informações e Mapa -->
+                <div class="space-y-6">
+                    <div class="glass-card p-8 rounded-3xl space-y-6">
+                        <h3 class="text-2xl font-bold font-heading text-cyan-300 flex items-center gap-3">
+                            <i data-lucide="map-pin" class="w-6 h-6 text-cyan-400"></i>
+                            <span>Sede InovaTech</span>
+                        </h3>
+                        
+                        <div class="space-y-4 text-slate-300">
+                            <div class="flex items-start gap-4">
+                                <div class="p-2.5 bg-slate-800/80 rounded-xl text-cyan-400 mt-1">
+                                    <i data-lucide="building-2" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-white">Endereço</h4>
+                                    <p class="text-sm text-slate-300">Av. Paulista, 1000 - Bela Vista</p>
+                                    <p class="text-sm text-slate-400">São Paulo - SP, CEP 01310-100</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="p-2.5 bg-slate-800/80 rounded-xl text-cyan-400 mt-1">
+                                    <i data-lucide="phone" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-white">Telefone & WhatsApp</h4>
+                                    <p class="text-sm text-slate-300">+55 (11) 4003-8900</p>
+                                    <p class="text-sm text-slate-400">Atendimento rápido</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="p-2.5 bg-slate-800/80 rounded-xl text-cyan-400 mt-1">
+                                    <i data-lucide="mail" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-white">E-mail Comercial</h4>
+                                    <p class="text-sm text-slate-300">contato@inovatech.com.br</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="p-2.5 bg-slate-800/80 rounded-xl text-cyan-400 mt-1">
+                                    <i data-lucide="clock" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-white">Horário de Funcionamento</h4>
+                                    <p class="text-sm text-slate-300">Segunda a Sexta: 08:00h às 19:00h</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mapa Incorporado (Google Maps Mockup Iframe) -->
+                    <div class="rounded-3xl overflow-hidden glass-card p-2 h-72 relative border border-white/10">
+                        <iframe 
+                            title="Mapa da Localização da InovaTech"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.097652312848!2d-46.65421522378877!3d-23.563124361863584!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8da0aa315%3A0xd59f9431f228c0e0!2sAv.%20Paulista%2C%201000%20-%20Bela%20Vista%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2001310-100!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0; filter: grayscale(0.8) invert(0.9) contrast(1.2);" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                            class="rounded-2xl">
+                        </iframe>
+                    </div>
+
+                </div>
+
+                <!-- Formulário de Contato -->
+                <div id="contato" class="glass-card p-8 rounded-3xl space-y-6">
+                    <h3 class="text-2xl font-bold font-heading text-white">Envie uma Mensagem</h3>
+                    <p class="text-sm text-slate-300">Preencha o formulário abaixo e nossa equipe especialista entrará em contato em até 2 horas.</p>
+
+                    <form id="contactForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2" for="name">Nome Completo</label>
+                            <input type="text" id="name" required placeholder="Seu nome" class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition-colors">
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2" for="email">E-mail</label>
+                                <input type="email" id="email" required placeholder="seu@email.com" class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2" for="phone">Telefone</label>
+                                <input type="tel" id="phone" placeholder="(11) 99999-9999" class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition-colors">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2" for="subject">Assunto</label>
+                            <select id="subject" class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-700 text-white focus:outline-none focus:border-cyan-400 transition-colors">
+                                <option>Desenvolvimento Sob Medida</option>
+                                <option>Consultoria em IA & Dados</option>
+                                <option>Infraestrutura em Nuvem</option>
+                                <option>Outros Assuntos</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2" for="message">Mensagem</label>
+                            <textarea id="message" rows="4" required placeholder="Como podemos ajudar o seu projeto?" class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition-colors resize-none"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-4 rounded-xl font-bold bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white shadow-lg shadow-cyan-500/25 transition-all duration-300 hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2">
+                            <i data-lucide="send" class="w-5 h-5"></i>
+                            <span>Enviar Mensagem</span>
+                        </button>
+                    </form>
+
+                    <!-- Feedback mensagem -->
+                    <div id="formSuccess" class="hidden p-4 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-sm text-center">
+                        ✓ Mensagem enviada com sucesso! Entraremos em contato em breve.
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- RODAPÉ (FOOTER) -->
+    <footer class="relative z-10 border-t border-white/10 bg-slate-950/90 pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+                
+                <!-- Coluna 1: Logo & Sobre -->
+                <div class="space-y-4 md:col-span-1">
+                    <a href="#inicio" class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-indigo-600 flex items-center justify-center text-white">
+                            <i data-lucide="cpu" class="w-5 h-5"></i>
+                        </div>
+                        <span class="text-xl font-bold font-heading text-white">Inova<span class="text-cyan-400">Tech</span></span>
+                    </a>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Liderando a próxima geração de soluções digitais e inteligência tecnológica corporativa.
+                    </p>
+                    <div class="flex items-center gap-3 pt-2">
+                        <a href="#" aria-label="LinkedIn" class="w-9 h-9 rounded-lg glass-card flex items-center justify-center text-slate-300 hover:text-cyan-400 hover:border-cyan-400 transition-colors">
+                            <i data-lucide="linkedin" class="w-4 h-4"></i>
+                        </a>
+                        <a href="#" aria-label="GitHub" class="w-9 h-9 rounded-lg glass-card flex items-center justify-center text-slate-300 hover:text-cyan-400 hover:border-cyan-400 transition-colors">
+                            <i data-lucide="github" class="w-4 h-4"></i>
+                        </a>
+                        <a href="#" aria-label="Instagram" class="w-9 h-9 rounded-lg glass-card flex items-center justify-center text-slate-300 hover:text-cyan-400 hover:border-cyan-400 transition-colors">
+                            <i data-lucide="instagram" class="w-4 h-4"></i>
+                        </a>
+                        <a href="#" aria-label="Twitter" class="w-9 h-9 rounded-lg glass-card flex items-center justify-center text-slate-300 hover:text-cyan-400 hover:border-cyan-400 transition-colors">
+                            <i data-lucide="twitter" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Coluna 2: Navegação -->
+                <div>
+                    <h4 class="text-sm font-bold uppercase tracking-wider text-white mb-4">Navegação</h4>
+                    <ul class="space-y-2.5 text-sm text-slate-400">
+                        <li><a href="#inicio" class="hover:text-cyan-400 transition-colors">Início</a></li>
+                        <li><a href="#sobre" class="hover:text-cyan-400 transition-colors">Sobre Nós</a></li>
+                        <li><a href="#localizacao" class="hover:text-cyan-400 transition-colors">Localização</a></li>
+                        <li><a href="#background" class="hover:text-cyan-400 transition-colors">Temas & Background</a></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 3: Soluções -->
+                <div>
+                    <h4 class="text-sm font-bold uppercase tracking-wider text-white mb-4">Soluções</h4>
+                    <ul class="space-y-2.5 text-sm text-slate-400">
+                        <li><a href="#sobre" class="hover:text-cyan-400 transition-colors">Desenvolvimento Web & Mobile</a></li>
+                        <li><a href="#sobre" class="hover:text-cyan-400 transition-colors">Inteligência Artificial</a></li>
+                        <li><a href="#sobre" class="hover:text-cyan-400 transition-colors">Cloud & DevOps</a></li>
+                        <li><a href="#sobre" class="hover:text-cyan-400 transition-colors">Consultoria em TI</a></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 4: Newsletter -->
+                <div>
+                    <h4 class="text-sm font-bold uppercase tracking-wider text-white mb-4">InovaNews</h4>
+                    <p class="text-sm text-slate-400 mb-4">Assine nossa newsletter para receber novidades sobre tecnologia e inovação.</p>
+                    <form onsubmit="event.preventDefault(); this.reset(); alert('Obrigado por assinar nossa newsletter!');" class="space-y-2">
+                        <input type="email" required placeholder="Seu e-mail..." class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400">
+                        <button type="submit" class="w-full py-2.5 rounded-xl text-sm font-semibold bg-cyan-500 hover:bg-cyan-400 text-slate-950 transition-colors">
+                            Inscrever-se
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+                <p>&copy; 2026 InovaTech Soluções em Tecnologia Ltda. Todos os direitos reservados.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-slate-400 transition-colors">Política de Privacidade</a>
+                    <a href="#" class="hover:text-slate-400 transition-colors">Termos de Uso</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script Principal JS -->
+    <script>
+        // Inicializar ícones do Lucide
+        lucide.createIcons();
+
+        // Elementos do DOM
+        const mainBody = document.getElementById('mainBody');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const navbar = document.getElementById('navbar');
+
+        // Toggle Menu Mobile
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Fechar menu mobile ao clicar em um link
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Alterador de Temas e Backgrounds
+        function changeTheme(themeName) {
+            // Remove temas anteriores
+            mainBody.classList.remove('bg-theme-tech-dark', 'bg-theme-cyber-blue', 'bg-theme-clean-light');
+
+            // Ajuste de classes no body dependendo do tema escolhido
+            if (themeName === 'tech-dark') {
+                mainBody.classList.add('bg-theme-tech-dark');
+                mainBody.className = mainBody.className.replace(/text-slate-\d+/, 'text-slate-100');
+            } else if (themeName === 'cyber-blue') {
+                mainBody.classList.add('bg-theme-cyber-blue');
+                mainBody.className = mainBody.className.replace(/text-slate-\d+/, 'text-slate-100');
+            } else if (themeName === 'clean-light') {
+                mainBody.classList.add('bg-theme-clean-light');
+            }
+
+            // Atualiza o estado dos botões visualmente
+            const buttons = document.querySelectorAll('.theme-btn');
+            buttons.forEach(btn => {
+                const icon = btn.querySelector('i');
+                if (btn.getAttribute('onclick').includes(themeName)) {
+                    btn.classList.add('border-cyan-400');
+                    btn.classList.remove('border-transparent');
+                } else {
+                    btn.classList.remove('border-cyan-400');
+                    btn.classList.add('border-transparent');
+                }
+            });
+        }
+
+        // Alteração sutil do estilo do menu ao rolar
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-slate-950/90', 'shadow-lg');
+            } else {
+                navbar.classList.remove('bg-slate-950/90', 'shadow-lg');
+            }
+        });
+
+        // Tratamento do Formulário de Contato
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const successMsg = document.getElementById('formSuccess');
+
+            // Exibir mensagem de sucesso
+            successMsg.classList.remove('hidden');
+            form.reset();
+
+            // Ocultar mensagem após 5 segundos
+            setTimeout(() => {
+                successMsg.classList.add('hidden');
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
